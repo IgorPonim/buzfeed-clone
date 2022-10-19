@@ -1,14 +1,16 @@
 import QuestionBlock from "./QuestionBlock"
 
 
-const QuestionsBlock = ({ quizItem }) => {
+const QuestionsBlock = ({ chosenAnswer, quizItem, setShosenAnswer, unAnsweredIds, setUnAnsweredIds }) => {
+
+
 
     return (
         <div>
             <h2 id={quizItem.id} className="question-title">{quizItem.text}</h2>
             <div className="question-container">
                 {quizItem?.questions.map((question, index) => {
-                    return <QuestionBlock key={index} question={question} />
+                    return <QuestionBlock unAnsweredIds={unAnsweredIds} setUnAnsweredIds={setUnAnsweredIds} chosenAnswer={chosenAnswer} setShosenAnswer={setShosenAnswer} key={index} question={question} />
                 })}
 
 
