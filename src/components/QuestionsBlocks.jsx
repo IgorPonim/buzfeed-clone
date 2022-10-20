@@ -10,7 +10,7 @@ const QuestionsBlock = ({ chosenAnswer, quizItem, setShosenAnswer, unAnsweredIds
             <h2 id={quizItem.id} className="question-title">{quizItem.text}</h2>
             <div className="question-container">
                 {quizItem?.questions.map((question, index) => {
-                    return <QuestionBlock unAnsweredIds={unAnsweredIds} setUnAnsweredIds={setUnAnsweredIds} chosenAnswer={chosenAnswer} setShosenAnswer={setShosenAnswer} key={index} question={question} />
+                    return <QuestionBlock quizItemId={quizItem.id} unAnsweredIds={unAnsweredIds} setUnAnsweredIds={setUnAnsweredIds} chosenAnswer={chosenAnswer} setShosenAnswer={setShosenAnswer} key={index} question={question} />
                 })}
 
 

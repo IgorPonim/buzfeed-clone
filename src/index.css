@@ -46,7 +46,7 @@ h2 {
     height: 286px;
     background-color: white;
     border-radius: 5px;
-    object-position: center;
+    object-position: bottom;
     object-fit: cover;
     overflow: hidden;
     transition: 0.2s ease-in-out;
@@ -112,4 +112,8 @@ h2 {
     font-style: italic;
     padding: 0;
 
+}
+
+.question-block:disabled{
+    visibility: hidden;
 }

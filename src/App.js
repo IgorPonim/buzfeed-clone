@@ -4,6 +4,8 @@ import './App.css';
 import Title from './components/Title';
 import axios from 'axios'
 import QuestionsBlock from './components/QuestionsBlocks';
+import AnswerBlock from './components/AnswerBlock';
+
 
 
 const App = () => {
@@ -11,6 +13,8 @@ const App = () => {
   const [quiz, setQuiz] = useState(null)
   const [chosenAnswer, setShosenAnswer] = useState([])
   const [unAnsweredIds, setUnAnsweredIds] = useState([0, 1, 2])
+  const [showAnalysis, setShowAnalysis] = useState(false)
+
 
   const fetchData = async () => {
     try {
@@ -22,8 +26,6 @@ const App = () => {
     catch (er) { console.log(er) }
   }
 
-
-
   useEffect(() => {
     fetchData()
   }, [])
@@ -33,7 +35,24 @@ const App = () => {
     let unAnsweredIds = quiz?.content.map(({ id }) => id)
     setUnAnsweredIds(unAnsweredIds)
   }, [quiz])
-  console.log(unAnsweredIds)
+
+
+  useEffect(() => {
+    if (unAnsweredIds) {
+      if (unAnsweredIds.length <= 0 && chosenAnswer.length > 0) {
+        setShowAnalysis(true)
+      }
+      //scroll to highest unAnswered question
+      const highestId = Math.min(...unAnsweredIds)
+      const highestElement = document.getElementById(`${highestId}`)
+      highestElement?.scrollIntoView({ behavior: 'smooth' })
+    }
+
+  }, [unAnsweredIds, chosenAnswer])
+
+
+
+
   return (
     <>
       <div className='app'>
@@ -44,10 +63,15 @@ const App = () => {
             setShosenAnswer={setShosenAnswer}
             quizItem={content}
             key={content.id}
-            unAnsweredIds={unAnsweredIds} setUnAnsweredIds={setUnAnsweredIds}
+            unAnsweredIds={unAnsweredIds}
+            setUnAnsweredIds={setUnAnsweredIds}
+
           />
         })}
-
+        {showAnalysis && <AnswerBlock
+          answerOptions={quiz?.awnswers}
+          chosenAnswer={chosenAnswer}
+        />}
 
 
       </div>
