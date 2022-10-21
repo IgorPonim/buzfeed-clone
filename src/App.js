@@ -41,6 +41,8 @@ const App = () => {
     if (unAnsweredIds) {
       if (unAnsweredIds.length <= 0 && chosenAnswer.length > 0) {
         setShowAnalysis(true)
+        const answerBlock = document.querySelector('.focus')
+        answerBlock?.scrollIntoView({ behavior: 'smooth', block: "end" })
       }
       //scroll to highest unAnswered question
       const highestId = Math.min(...unAnsweredIds)
@@ -48,7 +50,7 @@ const App = () => {
       highestElement?.scrollIntoView({ behavior: 'smooth' })
     }
 
-  }, [unAnsweredIds, chosenAnswer])
+  }, [unAnsweredIds, chosenAnswer, showAnalysis])
 
 
 
@@ -68,11 +70,12 @@ const App = () => {
 
           />
         })}
+
         {showAnalysis && <AnswerBlock
           answerOptions={quiz?.awnswers}
           chosenAnswer={chosenAnswer}
         />}
-
+        <div className='focus'></div>
 
       </div>
     </>);

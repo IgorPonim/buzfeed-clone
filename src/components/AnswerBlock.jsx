@@ -11,14 +11,21 @@ const AnswerBlock = ({ answerOptions, chosenAnswer }) => {
                 setResult(element)
 
             }
-            else setResult(element.text)
+            else setResult(element)
         })
     }, [])
-    console.log(result)
-    return (<>
-        <div>{result}</div>
-        <div>{chosenAnswer}</div>
-    </>
+
+
+
+    return (
+        <>
+            <div id='answer-block' className='answer-block'>
+                <h2>{result?.text}</h2>
+                <img alt={result?.text} src={result?.image}></img>
+
+
+            </div>
+        </>
     )
 }
 

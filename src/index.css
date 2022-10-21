@@ -114,6 +114,27 @@ h2 {
 
 }
 
-.question-block:disabled{
+.question-block:disabled {
     visibility: hidden;
+}
+
+.answer-block {
+    width: 600px;
+    background-color: rgb(255, 61, 158);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    margin-bottom: 100px;
+    padding-bottom: 100px;
+}
+
+.answer-block img {
+    width: 90%;
+}
+
+.focus{
+    visibility: hidden;;
+    height: 350px;
 }
